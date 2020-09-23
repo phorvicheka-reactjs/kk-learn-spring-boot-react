@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import AuthenticationService from './AuthenticationService.js';
 
 class LoginComponent extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            username: '',
-            password: '',
+            username: 'username',
+            password: 'password',
             hasLoginFailed: false,
             showSuccessMessage: false,
         };
@@ -23,6 +24,10 @@ class LoginComponent extends Component {
             this.state.username === 'username' &&
             this.state.password === 'password'
         ) {
+            AuthenticationService.registerSuccessfulLogin(
+                this.state.username,
+                this.state.password
+            );
             this.props.history.push(`/welcome/${this.state.username}`);
         } else {
             this.setState({ showSuccessMessage: false, hasLoginFailed: true });
@@ -33,9 +38,9 @@ class LoginComponent extends Component {
         return (
             <div>
                 <h1>Login</h1>
-                <div className="container">
+                <div className='container'>
                     {this.state.hasLoginFailed && (
-                        <div className="alert alert-warning">
+                        <div className='alert alert-warning'>
                             Invalid Credentials
                         </div>
                     )}
@@ -57,7 +62,7 @@ class LoginComponent extends Component {
                         onChange={this.handleChange}
                     />
                     <button
-                        className="btn btn-success"
+                        className='btn btn-success'
                         onClick={this.loginClicked}
                     >
                         Login
