@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom';
 
 class WelcomeComponent extends Component {
     constructor(props) {
@@ -15,7 +15,8 @@ class WelcomeComponent extends Component {
             <>
                 <h1>Welcome!</h1>
                 <div>
-                    Welcome "{this.props.match.params.username}". 
+                    Welcome "{this.props.match.params.username}". You can manage
+                    your todos <Link to='/todos'>here</Link>.
                 </div>
             </>
         );

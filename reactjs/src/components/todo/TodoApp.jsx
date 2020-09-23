@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LoginComponent from './LoginComponent.jsx';
 import WelcomeComponent from './WelcomeComponent.jsx';
 import ErrorComponent from './ErrorComponent.jsx';
+import ListTodosComponent from './ListTodosComponent.jsx';
 
 class TodoApp extends Component {
     render() {
@@ -16,6 +17,7 @@ class TodoApp extends Component {
                             path='/welcome/:username'
                             component={WelcomeComponent}
                         />
+                        <Route path="/todos" component={ListTodosComponent}/>
                         <Route component={ErrorComponent} />
                     </Switch>
                 </Router>
