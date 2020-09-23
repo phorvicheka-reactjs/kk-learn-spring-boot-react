@@ -33,9 +33,9 @@ class LoginComponent extends Component {
         return (
             <div>
                 <h1>Login</h1>
-                <div >
+                <div className="container">
                     {this.state.hasLoginFailed && (
-                        <div>
+                        <div className="alert alert-warning">
                             Invalid Credentials
                         </div>
                     )}
@@ -57,6 +57,7 @@ class LoginComponent extends Component {
                         onChange={this.handleChange}
                     />
                     <button
+                        className="btn btn-success"
                         onClick={this.loginClicked}
                     >
                         Login
