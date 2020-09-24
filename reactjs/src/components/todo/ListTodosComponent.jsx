@@ -42,6 +42,11 @@ class ListTodosComponent extends Component {
         });
     };
 
+    updateTodoClicked = (id) => {
+        console.log('update ' + id);
+        this.props.history.push(`/todos/${id}`);
+    };
+
     render() {
         return (
             <div>
@@ -54,6 +59,7 @@ class ListTodosComponent extends Component {
                                 <th>description</th>
                                 <th>Target Date</th>
                                 <th>Is Completed?</th>
+                                <th>Update</th>
                                 <th>Delete</th>
                             </tr>
                         </thead>
@@ -64,6 +70,16 @@ class ListTodosComponent extends Component {
                                     <td>{todo.description}</td>
                                     <td>{todo.targetDate.toString()}</td>
                                     <td>{todo.done.toString()}</td>
+                                    <td>
+                                        <button
+                                            className='btn btn-success'
+                                            onClick={() =>
+                                                this.updateTodoClicked(todo.id)
+                                            }
+                                        >
+                                            Update
+                                        </button>
+                                    </td>
                                     <td>
                                         <button
                                             className='btn btn-warning'
