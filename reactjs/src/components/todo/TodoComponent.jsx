@@ -16,6 +16,10 @@ class TodoComponent extends Component {
     }
 
     componentDidMount() {
+        if (this.state.id === -1) {
+            return;
+        }
+
         let username = AuthenticationService.getUsername();
 
         TodoDataService.retrieveTodo(username, this.state.id).then((response) =>
@@ -53,13 +57,18 @@ class TodoComponent extends Component {
 
         let todo = {
             id: this.state.id,
+            username,
             description: values.description,
             targetDate: values.targetDate,
         };
 
-        TodoDataService.updateTodo(username, this.state.id, todo).then(() =>
-            this.props.history.push('/todos')
-        );
+        if (this.state.id === -1) {
+            TodoDataService.createTodo(username, todo)
+                .then(() => this.props.history.push('/todos'))
+        } else {
+            TodoDataService.updateTodo(username, this.state.id, todo)
+                .then(() => this.props.history.push('/todos'))
+        }
     };
 
     render() {

@@ -47,6 +47,10 @@ class ListTodosComponent extends Component {
         this.props.history.push(`/todos/${id}`);
     };
 
+    addTodoClicked = () => {
+        this.props.history.push(`/todos/-1`)
+    }
+
     render() {
         return (
             <div>
@@ -94,6 +98,9 @@ class ListTodosComponent extends Component {
                             ))}
                         </tbody>
                     </table>
+                    <div className="row">
+                        <button className="btn btn-success" onClick={this.addTodoClicked}>Add</button>
+                    </div>
                 </div>
             </div>
         );
