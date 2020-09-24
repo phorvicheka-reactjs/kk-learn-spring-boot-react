@@ -1,4 +1,4 @@
-package com.springboot8reactjs.rest.webservices.restfulwebservices;
+package com.springboot8reactjs.rest.webservices.restfulwebservices.helloworld;
 
 public class HelloWorldBean {
 
