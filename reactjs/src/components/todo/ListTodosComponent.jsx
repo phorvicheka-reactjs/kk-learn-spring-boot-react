@@ -23,12 +23,24 @@ class ListTodosComponent extends Component {
 
     componentDidMount() {
         console.log('componentDidMount');
+        this.refreshTodos();
+        console.log(this.state);
+    }
+
+    refreshTodos = () => {
         let username = AuthenticationService.getUsername();
         TodoDataService.retrieveAllTodos(username).then((response) => {
             this.setState({ todos: response.data });
         });
-        console.log(this.state);
-    }
+    };
+
+    deleteTodoClicked = (id) => {
+        let username = AuthenticationService.getUsername();
+        TodoDataService.deleteTodo(username, id).then((response) => {
+            this.setState({ message: `Delete of todo ${id} Successful` });
+            this.refreshTodos();
+        });
+    };
 
     render() {
         return (
@@ -42,6 +54,7 @@ class ListTodosComponent extends Component {
                                 <th>description</th>
                                 <th>Target Date</th>
                                 <th>Is Completed?</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -51,6 +64,16 @@ class ListTodosComponent extends Component {
                                     <td>{todo.description}</td>
                                     <td>{todo.targetDate.toString()}</td>
                                     <td>{todo.done.toString()}</td>
+                                    <td>
+                                        <button
+                                            className='btn btn-warning'
+                                            onClick={() =>
+                                                this.deleteTodoClicked(todo.id)
+                                            }
+                                        >
+                                            Delete
+                                        </button>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
